@@ -64,7 +64,8 @@ void* ThreadPool :: run (void *arg)
 			printf("job found : %d %p %d\n",j->mArg,j->mFunction, (int)mJobQueue.size());
 			
 			j->mFunction(j->mArg);
-			free(j);
+			delete j;
+			j = NULL;
 
 			printf("Thread[%u] released the lock on jobQueue\n",(int)pthread_self());
 			printf("\n");
